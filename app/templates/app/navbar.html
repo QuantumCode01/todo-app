@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid pb-0">
+          <a class="navbar-brand  mb-1 fs-4 align-top">To Do App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active fs-6" aria-current="page">{{request.user|upper}}</a>
+                </li>
+
+                
+                {% else %}
+                    
+                  <li class="nav-item">
+                    <a class="nav-link active fs-6" aria-current="page" href="{% url 'task' %}" >Home</a><br>
+                  </li>
+                {% endif %}
+              
+            </ul>
+          
+          
+            <div class="d-flex mb-3">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                   <a class="nav-link active fs-6" aria-current="page" href="{% url 'logout' %}">LogOut</a>
+                  </li>
+            {%else%}
+           
+                   <li class="nav-item">
+                    <a class="nav-link active fs-6" aria-current="page" href="{% url 'login' %}">Login</a>
+                   </li>
+                   <li class="nav-item">
+                    <a class="nav-link active fs-6" aria-current="page" href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                   </li>
+           
+              {%endif%}
+            </ul>
+
+            <div>
+            
+          </div>
+        </div>
+      </nav>
+</body>
+</html>

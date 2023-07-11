@@ -1,0 +1,45 @@
+.table{
+   font-family: 'Poppins', sans-serif;
+   ;
+}
+
+.delete{
+    display: inline-block;
+}
+
+
+body{
+    margin-bottom: 40px;;
+}
+.bi{
+    color:rgb(212, 106, 106);
+}
+.edit{
+    color:rgb(57, 87, 219);
+}
+.border{
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.8);
+    background-image: linear-gradient(to right top, #9fdabb, #56dda9, #5cc7a7, #64d6bd, #4ab6a4);
+}
+
+.hello1{
+
+    vertical-align: middle;
+   }
+.brdr{
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
+  
+    width:735px;
+    padding-left:8px;
+    padding-bottom:8px;
+    padding-top:8px;
+    padding-right:0px;
+    text-align:justify;
+    border-radius: 5px;
+  }
+  .form-control:focus {
+    border:none;
+  
+
+   
+}

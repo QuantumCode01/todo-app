@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+</head> 
+<body>
+   
+
+   {% include "app/navbar.html" %}
+    <div class="container mt-5 pt-2" >
+        <div class="row justify-content-center">
+        <div class="col-6 text-center mb-2 ">
+        {% if messages %}
+           {% for message in messages %}
+           <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                 <strong>{{message}}.</strong>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+           {% endfor %}
+        {% endif %}
+        </div>
+        </div>
+      
+          <div class="row justify-content-center ">
+            
+              <div class="col-sm-8  "> 
+                {% if request.user.is_authenticated %} 
+                <div class=" border  rounded-3 shadow-lg text-white  text-center">
+                  <h4 class="mt-2">Hello {{request.user|upper}}</h4> <br>  
+                  {% if count %} 
+                  <h5>You have <em>{{count}}</em> incomplete task{{count|pluralize:"s"}}.</h5>  
+                  {% else %}
+                  <h5>You have completed all the tasks</h5>
+                  {% endif %}
+                </div> <br>
+                {% endif %}
+            
+              </div>
+              
+
+
+              <div class=" col-sm-8">
+                 <table class="table  rounded mb-0" style="background-color:#ffffff" >
+    
+                     {% for tk in task %}
+                          
+                            <div class="row row justify-content-center mx-1">    
+                             <div class=" col-sm-8 brdr">
+                                <div class="hello1 d-inline-block p-1"style="width:100px;margin-right:140px;">
+                                  {% if tk.complete == True %}
+                                    <h6><strike>{{tk.title|upper}}</strike></h6>
+              <!-- <td><a href="{% url 'update' tk.id %}"class="btn btn-success">Update</a></td>
+              <td><a href="{% url 'delete' tk.id %}" class="btn btn-danger">Delete</a></td> -->
+                                  {% else %}
+                                    <h6>{{tk.title|upper}}</h6>
+                                  {% endif %}
+                                </div>
+    
+        
+                              <div class="hello1 d-inline-block" style="width:70px;margin-right:140px;">
+                                {% if tk.complete == True %}
+                                   <h6>Completed</h6>
+                                    <!-- <h6>{{tk.created|date:"SHORT_DATE_FORMAT"}}</h6> -->
+                                {%else%}
+                                   <h6>Incomplete</h6>
+                                  {%endif%}
+                              </div>
+
+                              <div class="hello1 d-inline-block" style="width:100px;margin-right:80px;">
+                                    <a href="{{tk.get_absolute_url}}" ><i class="edit bi bi-pencil-square"></i></a>
+                              </div>
+
+                              <div class="hello1 d-inline-block"></div>
+                                <a href="{% url 'delete' tk.slug %}" ><i class="bi bi-trash-fill "></i></a>
+                              </div> <br>
+
+                             </div>
+                                
+                            </div> <br>
+                      {% endfor %} 
+    
+                </table>
+             
+              </div>
+
+              <div class="col-sm-8 mt-3 ">  
+                <div class=" border border-2 rounded-3 shadow-lg ">
+           
+                 <form  class="px-5 mt-3 p-4" action=""method="post" novalidate>
+                  {%csrf_token%}
+                  <div>
+                    {% if form.non_field_errors %}
+                      {% for error in form.non_field_errors %}
+                         <p class="alert alert-danger">{{error}}</p>
+                      {% endfor %}
+                   {% endif %}
+                  </div>
+                  <h3>{{form.title}}</h3> 
+                  
+                  {% if request.user.is_authenticated %}
+                  <small class="text-dark fs-6 text-center">{{form.title.errors|striptags}}</small>  <br>
+                  {%endif%}
+                  <div class="text-center"><input class=" btn btn-primary mt-1  px-4 text-center rounded-pill" type="submit" value="Submit" style="box-shadow:2px 2px 8px rgb(209, 202, 202);"> 
+                     <br> 
+                  </div>
+          
+                 </form><br>
+        
+     
+
+                
+                </div>
+              </div>
+          </div>
+                 {% block content %} {% endblock content%}
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
