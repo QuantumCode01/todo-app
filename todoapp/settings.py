@@ -80,12 +80,12 @@ WSGI_APPLICATION = 'todoapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':os.getenv('PGNAME'),
-        'USER':os.getenv('PGUSER'),
-        'PASSWORD':os.getenv('POSTGRES_PASSWORD'),
-        'HOST':os.getenv('PGHOST'),
-        'PORT':os.getenv('PGPORT'),    
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':os.getenv('DBNAME'),
+        'USER':os.getenv('DBUSER'),
+        'PASSWORD':os.getenv('DB_PASSWORD'),
+        'HOST':os.getenv('DBHOST'),
+        'PORT':os.getenv('DBPORT'),    
         }
 }
 
