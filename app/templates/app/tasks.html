@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
 </head> 
 <body>
-   
-
+      
    {% include "app/navbar.html" %}
+    
+     
+
+
     <div class="container mt-5 pt-2" >
         <div class="row justify-content-center">
         <div class="col-6 text-center mb-2 ">
@@ -39,7 +42,7 @@
                   {% if count %} 
                   <h5>You have <em>{{count}}</em> incomplete task{{count|pluralize:"s"}}.</h5>  
                   {% else %}
-                  <h5>You have completed all the tasks</h5>
+                  <h5>You have no tasks</h5>
                   {% endif %}
                 </div> <br>
                 {% endif %}
@@ -75,7 +78,7 @@
                                   {%endif%}
                               </div>
 
-                              <div class="hello1 d-inline-block" style="width:100px;margin-right:80px;">
+                              <div class="hello1 d-inline-block " style="width:100px;margin-right:80px;">
                                     <a href="{{tk.get_absolute_url}}" ><i class="edit bi bi-pencil-square"></i></a>
                               </div>
 
@@ -123,6 +126,35 @@
           </div>
                  {% block content %} {% endblock content%}
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+     
+
+
+
+
+
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
